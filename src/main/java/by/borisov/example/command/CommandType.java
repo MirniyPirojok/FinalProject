@@ -1,6 +1,5 @@
-package by.borisov.example.command.client;
+package by.borisov.example.command;
 
-import by.borisov.example.command.ActionCommand;
 import by.borisov.example.command.impl.LoginCommand;
 import by.borisov.example.command.impl.LogoutCommand;
 

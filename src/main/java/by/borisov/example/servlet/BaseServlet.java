@@ -15,16 +15,21 @@ import java.io.IOException;
 import static by.borisov.example.command.PagePath.INDEX;
 
 @WebServlet(urlPatterns = "/controller")
-public class Servlet extends HttpServlet {
+public class BaseServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//Optional<ActionCommand> commandOptional =
+//        CommandProvider.defineCommand(request.getParameter("command"));
+//ActionCommand command = commandOptional.orElseThrow(IllegalArgumentException::new);
         ActionFactory client = new ActionFactory();
         ActionCommand command = client.defineCommand(request);
 
@@ -34,10 +39,9 @@ public class Servlet extends HttpServlet {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
             dispatcher.forward(request, response);
         } else {
-            page = INDEX;
             request.getSession().setAttribute("nullPage",
                     MessageManager.getProperty("message.nullPage"));
-            response.sendRedirect(request.getContextPath() + page);
+            response.sendRedirect(request.getContextPath() + INDEX);
         }
     }
 }

@@ -6,14 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page isErrorPage="true" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Error Page</title>
 </head>
 <body>
 Request from ${pageContext.errorData.requestURI} is failed
 <br/>
-by.borisov.example.servlet.Servlet name of type: ${pageContext.errorData.servletName}
+by.borisov.example.servlet.BaseServlet name of type: ${pageContext.errorData.servletName}
 <br/>
 Status code: ${pageContext.errorData.statusCode}
 <br/>

@@ -1,7 +1,7 @@
 package by.borisov.example.command.factory;
 
 import by.borisov.example.command.ActionCommand;
-import by.borisov.example.command.client.CommandType;
+import by.borisov.example.command.CommandType;
 import by.borisov.example.command.impl.EmptyCommand;
 import by.borisov.example.resource.MessageManager;
 
@@ -12,7 +12,7 @@ public class ActionFactory {
         ActionCommand current = new EmptyCommand();
 
         String action = request.getParameter("command");
-        if (action == null || action.isEmpty()) {
+        if (action == null || action.isBlank()) {
             return current;
         }
         try {

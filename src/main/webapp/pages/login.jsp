@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Login</title>
 </head>
@@ -28,7 +29,7 @@
 
 </form>
 
-<form name="WrongActionForm" method="post" action="controller">
+<form name="WrongActionForm" method="post" action="controller" style="margin-top: 10px">
     <input type="hidden" name="command" value="wrongAction">
     <input type="submit" value="Wrong action"/>
 </form>
