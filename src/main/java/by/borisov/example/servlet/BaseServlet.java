@@ -1,7 +1,7 @@
 package by.borisov.example.servlet;
 
 import by.borisov.example.command.ActionCommand;
-import by.borisov.example.command.factory.ActionFactory;
+import by.borisov.example.command.CommandProvider;
 import by.borisov.example.resource.MessageManager;
 
 import javax.servlet.RequestDispatcher;
@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
-import static by.borisov.example.command.PagePath.INDEX;
+import static by.borisov.example.command.PagePath.INDEX_PAGE;
 
 @WebServlet(urlPatterns = "/controller")
 public class BaseServlet extends HttpServlet {
@@ -27,11 +28,11 @@ public class BaseServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//Optional<ActionCommand> commandOptional =
-//        CommandProvider.defineCommand(request.getParameter("command"));
-//ActionCommand command = commandOptional.orElseThrow(IllegalArgumentException::new);
-        ActionFactory client = new ActionFactory();
-        ActionCommand command = client.defineCommand(request);
+        Optional<ActionCommand> commandOptional =
+                CommandProvider.defineCommand(request.getParameter("command"));
+        ActionCommand command = commandOptional.orElseThrow(IllegalArgumentException::new);
+//        ActionFactory client = new ActionFactory();
+//        ActionCommand command = client.defineCommand(request);
 
         String page = command.execute(request);
 
@@ -41,7 +42,7 @@ public class BaseServlet extends HttpServlet {
         } else {
             request.getSession().setAttribute("nullPage",
                     MessageManager.getProperty("message.nullPage"));
-            response.sendRedirect(request.getContextPath() + INDEX);
+            response.sendRedirect(request.getContextPath() + INDEX_PAGE);
         }
     }
 }

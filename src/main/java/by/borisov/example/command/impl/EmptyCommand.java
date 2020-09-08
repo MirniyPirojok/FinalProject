@@ -4,11 +4,11 @@ import by.borisov.example.command.ActionCommand;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static by.borisov.example.command.PagePath.LOGIN;
+import static by.borisov.example.command.PagePath.LOGIN_PAGE;
 
 public class EmptyCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
-        return LOGIN;
+        return LOGIN_PAGE;
     }
 }

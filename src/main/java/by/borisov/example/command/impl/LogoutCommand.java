@@ -4,13 +4,12 @@ import by.borisov.example.command.ActionCommand;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static by.borisov.example.command.PagePath.INDEX;
+import static by.borisov.example.command.PagePath.INDEX_PAGE;
 
 public class LogoutCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
-        String page = INDEX;
         request.getSession().invalidate();
-        return page;
+        return INDEX_PAGE;
     }
 }

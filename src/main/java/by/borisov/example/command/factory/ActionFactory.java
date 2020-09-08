@@ -1,3 +1,4 @@
+/*Class for different way to define command*/
 package by.borisov.example.command.factory;
 
 import by.borisov.example.command.ActionCommand;
