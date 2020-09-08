@@ -31,8 +31,6 @@ public class BaseServlet extends HttpServlet {
         Optional<ActionCommand> commandOptional =
                 CommandProvider.defineCommand(request.getParameter("command"));
         ActionCommand command = commandOptional.orElseThrow(IllegalArgumentException::new);
-//        ActionFactory client = new ActionFactory();
-//        ActionCommand command = client.defineCommand(request);
 
         String page = command.execute(request);
 
