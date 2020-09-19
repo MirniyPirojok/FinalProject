@@ -1,6 +1,6 @@
-package by.borisov.example.service.impl;
+package by.borisov.webtask.model.service.impl;
 
-import by.borisov.example.service.UserService;
+import by.borisov.webtask.model.service.UserService;
 
 public class UserServiceImpl implements UserService {
     private static final String ADMIN_LOGIN = "1";

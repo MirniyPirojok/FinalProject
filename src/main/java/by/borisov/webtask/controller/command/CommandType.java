@@ -1,7 +1,7 @@
-package by.borisov.example.command;
+package by.borisov.webtask.controller.command;
 
-import by.borisov.example.command.impl.LoginCommand;
-import by.borisov.example.command.impl.LogoutCommand;
+import by.borisov.webtask.controller.command.impl.LoginCommand;
+import by.borisov.webtask.controller.command.impl.LogoutCommand;
 
 public enum CommandType {
     LOGIN(new LoginCommand()),

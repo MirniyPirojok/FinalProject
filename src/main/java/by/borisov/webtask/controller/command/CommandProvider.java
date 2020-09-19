@@ -1,4 +1,4 @@
-package by.borisov.example.command;
+package by.borisov.webtask.controller.command;
 
 import java.util.Arrays;
 import java.util.Optional;

@@ -14,7 +14,7 @@
 <body>
 Request from ${pageContext.errorData.requestURI} is failed
 <br/>
-by.borisov.example.servlet.BaseServlet name of type: ${pageContext.errorData.servletName}
+by.borisov.webtask.controller.Controller name of type: ${pageContext.errorData.servletName}
 <br/>
 Status code: ${pageContext.errorData.statusCode}
 <br/>

@@ -1,8 +1,7 @@
-package by.borisov.example.servlet;
+package by.borisov.webtask.controller;
 
-import by.borisov.example.command.ActionCommand;
-import by.borisov.example.command.CommandProvider;
-import by.borisov.example.resource.MessageManager;
+import by.borisov.webtask.controller.command.ActionCommand;
+import by.borisov.webtask.controller.command.CommandProvider;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,10 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
-import static by.borisov.example.command.PagePath.INDEX_PAGE;
-
 @WebServlet(urlPatterns = "/controller")
-public class BaseServlet extends HttpServlet {
+public class Controller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -34,13 +31,7 @@ public class BaseServlet extends HttpServlet {
 
         String page = command.execute(request);
 
-        if (page != null) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-            dispatcher.forward(request, response);
-        } else {
-            request.getSession().setAttribute("nullPage",
-                    MessageManager.getProperty("message.nullPage"));
-            response.sendRedirect(request.getContextPath() + INDEX_PAGE);
-        }
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
+        dispatcher.forward(request, response);
     }
 }
