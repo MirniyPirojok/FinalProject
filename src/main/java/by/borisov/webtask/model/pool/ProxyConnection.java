@@ -40,9 +40,8 @@ public class ProxyConnection implements Connection {
 
     @Override
     public void close() {
-        ConnectionPool connectionPool = ConnectionPool.getInstance();
         try {
-            connectionPool.releaseConnection(this);
+            ConnectionPool.getInstance().releaseConnection(this);
             logger.info("Connection is returned the the pool.");
         } catch (ConnectionException e) {
             logger.error("Connection is not returned to the pool.");

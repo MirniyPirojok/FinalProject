@@ -3,14 +3,18 @@ package by.borisov.webtask.entity;
 public class User extends Entity {
     private int id;
     private String login;
+    private String role;
+    private String email;
     private String password;
 
     public User() {
     }
 
-    public User(int id, String login, String password) {
+    public User(int id, String login, String role, String email, String password) {
         this.id = id;
         this.login = login;
+        this.role = role;
+        this.email = email;
         this.password = password;
     }
 
@@ -28,6 +32,22 @@ public class User extends Entity {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getPassword() {

@@ -11,14 +11,14 @@ import java.util.Properties;
  * Class for database properties loading
  */
 
-class DatabasePropertiesLoader {
+class DBPropertiesLoader {
     static Logger logger = LogManager.getLogger();
     private static final String DB_PROPERTIES_PATH = "database.properties";
 
     static Properties loadProperties() {
         Properties properties = new Properties();
         InputStream databaseProperties =
-                DatabasePropertiesLoader.class.getClassLoader().getResourceAsStream(DB_PROPERTIES_PATH);
+                DBPropertiesLoader.class.getClassLoader().getResourceAsStream(DB_PROPERTIES_PATH);
         try {
             properties.load(databaseProperties);
         } catch (IOException e) {

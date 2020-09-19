@@ -13,7 +13,6 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
-
 /**
  * Class is used to create connections, give them away and get back.
  */
@@ -24,46 +23,41 @@ public class ConnectionPool {
     private static ReentrantLock locker = new ReentrantLock();
     private static AtomicBoolean isPoolCreated = new AtomicBoolean(false);
 
-    static Properties properties = DatabasePropertiesLoader.loadProperties();
-    public static final int DEFAULT_POOL_SIZE = Integer.parseInt(properties.getProperty("poolsize"));
+    private static Properties properties = DBPropertiesLoader.loadProperties();
+    public static final String DRIVER = "db.driver";
+    public static final String DEFAULT_POOL_SIZE = "poolsize";
+    private static final String URL = "db.url";
 
-    private BlockingQueue<ProxyConnection> availableConnections;
-    private BlockingQueue<ProxyConnection> unavailableConnections;
+    private BlockingQueue<ProxyConnection> freeConnections;
+    private BlockingQueue<ProxyConnection> busyConnections;
 
     private ConnectionPool() {
         try {
-            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-        } catch (SQLException e) {
+            Class.forName(properties.getProperty(DRIVER));
+        } catch (ClassNotFoundException e) {
             logger.fatal("Database driver was not registered.", e);
             throw new RuntimeException(e);
         }
-        initConnections();
+        initPool();
     }
 
-    private void initConnections() {
-        availableConnections = new LinkedBlockingDeque<>(DEFAULT_POOL_SIZE);
-        ProxyConnection connection = null;
-        for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
-            try {
-                connection = ConnectionCreator.createConnection(properties);
-            } catch (SQLException e) {
-                logger.error("Connection was not created.");
-            }
-
-            if (connection != null) {
-                logger.info(String.format("Connection #%d was created.", i));
-                availableConnections.offer(connection);
-            }
+    private void initPool() {
+        int poolSize = Integer.parseInt(properties.getProperty(DEFAULT_POOL_SIZE));
+        busyConnections = new LinkedBlockingDeque<>(poolSize);
+        freeConnections = new LinkedBlockingDeque<>(poolSize);
+        ConnectionCreator connectionCreator = ConnectionCreator.getInstance();
+        String url = properties.getProperty(URL);
+        for (int i = 0; i < poolSize; i++) {
+            freeConnections.offer(connectionCreator.createConnection(url, properties));
+            logger.info(String.format("Connection #%d was created.", i));
         }
 
-        if (availableConnections.isEmpty()) {
+        if (freeConnections.isEmpty()) {
             logger.fatal("Connection pool was not initialized.");
             throw new ExceptionInInitializerError();
         } else {
             logger.info("Connection pool was initialized.");
         }
-
-        unavailableConnections = new LinkedBlockingDeque<>(DEFAULT_POOL_SIZE);
     }
 
     public static ConnectionPool getInstance() {
@@ -84,8 +78,8 @@ public class ConnectionPool {
     public Connection takeConnection() {
         ProxyConnection connection = null;
         try {
-            connection = availableConnections.take();
-            unavailableConnections.put(connection);
+            connection = freeConnections.take();
+            busyConnections.put(connection);
         } catch (InterruptedException e) {
             logger.error("Connection was not taken. Connection leak.");
             Thread.currentThread().interrupt();
@@ -94,9 +88,9 @@ public class ConnectionPool {
     }
 
     public void releaseConnection(Connection connection) throws ConnectionException {
-        if (connection instanceof ProxyConnection && unavailableConnections.remove(connection)) {
+        if (connection instanceof ProxyConnection && busyConnections.remove(connection)) {
             try {
-                availableConnections.put((ProxyConnection) connection);
+                freeConnections.put((ProxyConnection) connection);
             } catch (InterruptedException e) {
                 logger.error("Connection was not released. Connection leak.");
                 Thread.currentThread().interrupt();
@@ -108,16 +102,17 @@ public class ConnectionPool {
     }
 
     public void destroyPool() throws ConnectionException {
-        for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
+        int poolSize = Integer.parseInt(properties.getProperty(DEFAULT_POOL_SIZE));
+        for (int i = 0; i < poolSize; i++) {
             try {
-                availableConnections.take().reallyClose();
+                freeConnections.take().reallyClose();
             } catch (InterruptedException e) {
                 logger.error("Closing connection error", e);
                 throw new ConnectionException(e);
             }
         }
 
-        if (availableConnections.isEmpty()) {
+        if (freeConnections.isEmpty()) {
             logger.info("Connections pool was destroyed.");
         } else {
             logger.error("Connection pool was not destroyed.");
