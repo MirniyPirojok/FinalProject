@@ -1,29 +1,39 @@
 package by.borisov.webtask.entity;
 
 public class User extends Entity {
-    private int id;
-    private String login;
+    private long id;
     private String role;
+    private String login;
     private String email;
+    private String phone;
     private String password;
 
     public User() {
     }
 
-    public User(int id, String login, String role, String email, String password) {
+    public User(long id, String role, String login, String email, String phone, String password) {
         this.id = id;
-        this.login = login;
         this.role = role;
+        this.login = login;
         this.email = email;
+        this.phone = phone;
         this.password = password;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getLogin() {
@@ -42,12 +52,12 @@ public class User extends Entity {
         this.email = email;
     }
 
-    public String getRole() {
-        return role;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getPassword() {

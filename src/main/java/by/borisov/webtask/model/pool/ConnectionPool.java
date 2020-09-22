@@ -1,6 +1,5 @@
 package by.borisov.webtask.model.pool;
 
-import by.borisov.webtask.exception.ConnectionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +13,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Class is used to create connections, give them away and get back.
+ * Class is used to create connections, give them out and return.
  */
 public class ConnectionPool {
     static Logger logger = LogManager.getLogger();
@@ -25,29 +24,27 @@ public class ConnectionPool {
 
     private static Properties properties = DBPropertiesLoader.loadProperties();
     public static final String DRIVER = "db.driver";
-    public static final String DEFAULT_POOL_SIZE = "poolsize";
     private static final String URL = "db.url";
+    public static final int DEFAULT_POOL_SIZE = 32;
 
     private BlockingQueue<ProxyConnection> freeConnections;
     private BlockingQueue<ProxyConnection> busyConnections;
 
-    private ConnectionPool() {
+    static {
         try {
             Class.forName(properties.getProperty(DRIVER));
         } catch (ClassNotFoundException e) {
             logger.fatal("Database driver was not registered.", e);
             throw new RuntimeException(e);
         }
-        initPool();
     }
 
-    private void initPool() {
-        int poolSize = Integer.parseInt(properties.getProperty(DEFAULT_POOL_SIZE));
-        busyConnections = new LinkedBlockingDeque<>(poolSize);
-        freeConnections = new LinkedBlockingDeque<>(poolSize);
+    private ConnectionPool() {
+        busyConnections = new LinkedBlockingDeque<>(DEFAULT_POOL_SIZE);
+        freeConnections = new LinkedBlockingDeque<>(DEFAULT_POOL_SIZE);
         ConnectionCreator connectionCreator = ConnectionCreator.getInstance();
         String url = properties.getProperty(URL);
-        for (int i = 0; i < poolSize; i++) {
+        for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
             freeConnections.offer(connectionCreator.createConnection(url, properties));
             logger.info(String.format("Connection #%d was created.", i));
         }
@@ -87,28 +84,29 @@ public class ConnectionPool {
         return connection;
     }
 
-    public void releaseConnection(Connection connection) throws ConnectionException {
-        if (connection instanceof ProxyConnection && busyConnections.remove(connection)) {
-            try {
-                freeConnections.put((ProxyConnection) connection);
-            } catch (InterruptedException e) {
-                logger.error("Connection was not released. Connection leak.");
-                Thread.currentThread().interrupt();
+    public void releaseConnection(Connection connection) {
+        try {
+            if (!connection.getAutoCommit()) {
+                connection.setAutoCommit(true);
             }
-        } else {
-            logger.error("Connection was not released.");
-            throw new ConnectionException("Connection wasn't released.");
+            if (connection instanceof ProxyConnection && busyConnections.remove(connection)) {
+                freeConnections.put((ProxyConnection) connection);
+            }
+        } catch (InterruptedException e) {
+            logger.error("Connection was not released. Connection leak.");
+            Thread.currentThread().interrupt();
+        } catch (SQLException e) {
+            logger.error("Can't set autocommit to true.", e);
         }
     }
 
-    public void destroyPool() throws ConnectionException {
-        int poolSize = Integer.parseInt(properties.getProperty(DEFAULT_POOL_SIZE));
-        for (int i = 0; i < poolSize; i++) {
+    public void destroyPool() {
+        for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
             try {
                 freeConnections.take().reallyClose();
             } catch (InterruptedException e) {
                 logger.error("Closing connection error", e);
-                throw new ConnectionException(e);
+                Thread.currentThread().interrupt();
             }
         }
 
