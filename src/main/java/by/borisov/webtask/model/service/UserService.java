@@ -30,7 +30,6 @@ public class UserService {
         } finally {
             transaction.end();
         }
-
         return users;
     }
 

@@ -1,5 +1,6 @@
 package by.borisov.webtask.model.pool;
 
+import by.borisov.webtask.exception.ConnectionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,16 +20,16 @@ public class ConnectionPool {
     static Logger logger = LogManager.getLogger();
 
     private static ConnectionPool instance;
-    private static ReentrantLock locker = new ReentrantLock();
-    private static AtomicBoolean isPoolCreated = new AtomicBoolean(false);
+    private static final ReentrantLock locker = new ReentrantLock();
+    private static final AtomicBoolean isPoolCreated = new AtomicBoolean(false);
 
-    private static Properties properties = DBPropertiesLoader.loadProperties();
+    private static final Properties properties = DBPropertiesLoader.loadProperties();
     public static final String DRIVER = "db.driver";
     private static final String URL = "db.url";
     public static final int DEFAULT_POOL_SIZE = 32;
 
-    private BlockingQueue<ProxyConnection> freeConnections;
-    private BlockingQueue<ProxyConnection> busyConnections;
+    private final BlockingQueue<ProxyConnection> freeConnections;
+    private final BlockingQueue<ProxyConnection> busyConnections;
 
     static {
         try {
@@ -45,7 +46,12 @@ public class ConnectionPool {
         ConnectionCreator connectionCreator = ConnectionCreator.getInstance();
         String url = properties.getProperty(URL);
         for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
-            freeConnections.offer(connectionCreator.createConnection(url, properties));
+            try {
+                freeConnections.put(connectionCreator.createConnection(url, properties));
+            } catch (InterruptedException e) {
+                logger.error("Connection was not add to freeConnections.");
+                Thread.currentThread().interrupt();
+            }
             logger.info(String.format("Connection #%d was created.", i));
         }
 
