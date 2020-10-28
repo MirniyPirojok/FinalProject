@@ -4,6 +4,7 @@ import by.borisov.webtask.entity.User;
 import by.borisov.webtask.exception.DaoException;
 import by.borisov.webtask.model.dao.AbstractDao;
 import by.borisov.webtask.model.dao.ColumnName;
+import by.borisov.webtask.model.dao.UserDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDao extends AbstractDao<User> {
+public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     static Logger logger = LogManager.getLogger();
 
     public static final String SELECT_ALL_USERS =

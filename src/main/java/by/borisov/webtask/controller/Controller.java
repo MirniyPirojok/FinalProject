@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @WebServlet(urlPatterns = "/controller")
 public class Controller extends HttpServlet {
+    public static final String COMMAND = "command";
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -26,7 +27,7 @@ public class Controller extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Optional<ActionCommand> commandOptional =
-                CommandProvider.defineCommand(request.getParameter("command"));
+                CommandProvider.defineCommand(request.getParameter(COMMAND));
         ActionCommand command = commandOptional.orElseThrow(IllegalArgumentException::new);
 
         String page = command.execute(request);

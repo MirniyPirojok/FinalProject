@@ -13,7 +13,7 @@ public enum CommandType {
         this.command = command;
     }
 
-    public ActionCommand getCurrentCommand() {
+    public ActionCommand getCommand() {
         return command;
     }
 }

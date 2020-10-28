@@ -16,7 +16,7 @@ public class EntityTransaction {
             connection = ConnectionPool.getInstance().takeConnection();
         }
         dao.setConnection(connection);
-        logger.info(dao + "has a connection: " + connection);
+        logger.info(String.format("%s has a connection: %s", dao, connection));
     }
 
     public void begin(AbstractDao... daos) {
@@ -31,7 +31,7 @@ public class EntityTransaction {
 
         for (AbstractDao dao : daos) {
             dao.setConnection(connection);
-            logger.info(dao + "has a connection: " + connection);
+            logger.info(String.format("%s has a connection: %s", dao, connection));
         }
     }
 

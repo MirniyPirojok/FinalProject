@@ -23,10 +23,10 @@ class ConnectionCreator {
         return instance;
     }
 
-    ProxyConnection createConnection(String url, Properties properties) {
+    ProxyConnection createConnection(String url) {
         ProxyConnection proxyConnection = null;
         try {
-            Connection connection = DriverManager.getConnection(url, properties);
+            Connection connection = DriverManager.getConnection(url, DBPropertiesLoader.loadProperties());
             proxyConnection = new ProxyConnection(connection);
         } catch (SQLException e) {
             logger.error("Connection was not created.", e);

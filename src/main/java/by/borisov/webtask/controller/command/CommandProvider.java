@@ -7,7 +7,7 @@ public class CommandProvider {
     public static Optional<ActionCommand> defineCommand(String commandName){
         return Arrays.stream(CommandType.values())
                 .filter(o -> o.name().equalsIgnoreCase(commandName))
-                .map(CommandType::getCurrentCommand)
+                .map(CommandType::getCommand)
                 .findAny();
     }
 }

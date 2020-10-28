@@ -20,16 +20,16 @@ public class ConnectionPool {
     static Logger logger = LogManager.getLogger();
 
     private static ConnectionPool instance;
-    private static final ReentrantLock locker = new ReentrantLock();
-    private static final AtomicBoolean isPoolCreated = new AtomicBoolean(false);
+    private static ReentrantLock locker = new ReentrantLock();
+    private static AtomicBoolean isPoolCreated = new AtomicBoolean(false);
 
     private static final Properties properties = DBPropertiesLoader.loadProperties();
-    public static final String DRIVER = "db.driver";
+    private static final String DRIVER = "db.driver";
     private static final String URL = "db.url";
     public static final int DEFAULT_POOL_SIZE = 32;
 
-    private final BlockingQueue<ProxyConnection> freeConnections;
-    private final BlockingQueue<ProxyConnection> busyConnections;
+    private BlockingQueue<ProxyConnection> freeConnections;
+    private BlockingQueue<ProxyConnection> busyConnections;
 
     static {
         try {
@@ -47,9 +47,9 @@ public class ConnectionPool {
         String url = properties.getProperty(URL);
         for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
             try {
-                freeConnections.put(connectionCreator.createConnection(url, properties));
+                freeConnections.put(connectionCreator.createConnection(url));
             } catch (InterruptedException e) {
-                logger.error("Connection was not add to freeConnections.");
+                logger.error("Connection was not added to freeConnections.");
                 Thread.currentThread().interrupt();
             }
             logger.info(String.format("Connection #%d was created.", i));

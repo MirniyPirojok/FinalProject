@@ -3,7 +3,7 @@ package by.borisov.webtask.controller.command.impl;
 import by.borisov.webtask.controller.command.ActionCommand;
 import by.borisov.webtask.entity.User;
 import by.borisov.webtask.exception.ServiceException;
-import by.borisov.webtask.model.service.UserService;
+import by.borisov.webtask.model.service.impl.UserServiceImp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,7 +15,7 @@ public class LoginCommand implements ActionCommand {
     static Logger logger = LogManager.getLogger();
     private static final String PARAM_LOGIN = "login";
     private static final String PARAM_PASSWORD = "password";
-    private final UserService userService = new UserService();
+    private final UserServiceImp userServiceImp = new UserServiceImp();
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -23,7 +23,7 @@ public class LoginCommand implements ActionCommand {
         String login = request.getParameter(PARAM_LOGIN);
         String pass = request.getParameter(PARAM_PASSWORD);
         try {
-            User user = userService.findUser(login, pass);
+            User user = userServiceImp.findUser(login, pass);
             if (user != null) {
                 request.setAttribute("user", user.getLogin());
                 page = MAIN_PAGE;
@@ -31,7 +31,7 @@ public class LoginCommand implements ActionCommand {
                 request.setAttribute("errorLoginMessage", "login error");
             }
         } catch (ServiceException e) {
-            logger.info("User is not found.");
+            logger.error("User is not found.");
             request.setAttribute("errorLoginMessage", "login error");
         }
         return page;
