@@ -19,13 +19,13 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     static Logger logger = LogManager.getLogger();
 
     public static final String SELECT_ALL_USERS =
-            "SELECT iduser, role, login, email, phone, password FROM users";
+            "SELECT id_user, role, login, email, phone, password FROM users";
     private static final String SELECT_USER_BY_LOGIN =
-            "SELECT iduser, role, login, email, phone, password FROM users WHERE login=?";
+            "SELECT id_user, role, login, email, phone, password FROM users WHERE login=?";
     private static final String SELECT_USER_BY_ID =
-            "SELECT iduser, role, login, email, phone, password FROM users WHERE iduser=?";
+            "SELECT id_user, role, login, email, phone, password FROM users WHERE id_user=?";
     private static final String SELECT_USER_BY_LOGIN_AND_PASSWORD =
-            "SELECT iduser, role, login, email, phone, password FROM users WHERE login=? and password=?";
+            "SELECT id_user, role, login, email, phone, password FROM users WHERE login=? and password=?";
     private static final String INSERT_USER =
             "INSERT INTO users (role, login, email, phone, password) VALUES (?,?,?,?,?)";
 
