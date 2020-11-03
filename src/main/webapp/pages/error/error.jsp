@@ -14,7 +14,7 @@
 <body>
 Request from ${pageContext.errorData.requestURI} is failed
 <br/>
-by.borisov.webtask.controller.Controller name of type: ${pageContext.errorData.servletName}
+by.borisov.restaurant.controller.Controller name of type: ${pageContext.errorData.servletName}
 <br/>
 Status code: ${pageContext.errorData.statusCode}
 <br/>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="warn">
     <Properties>
-        <Property name="LOG_DIR">logs</Property>
+        <Property name="LOG_DIR">c:\JAVA\Examples\WebTask2\logs</Property>
         <Property name="ARCHIVE_LOG_DIR">archive</Property>
         <Property name="pattern_file">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%-5level] %logger{5} - %msg%n</Property>
         <Property name="pattern_console">%r [%-5level] [%logger{1}] %msg%n</Property>
     </Properties>
 
     <Appenders>
-        <RollingFile name="RollingFile" fileName="${LOG_DIR}/webtask.log"
+        <RollingFile name="RollingFile" fileName="${LOG_DIR}/web.log"
                      filePattern="${LOG_DIR}/${ARCHIVE_LOG_DIR}/%d{yyyy-MM-dd_HH-mm}_%i.log.zip">
             <PatternLayout pattern="${pattern_file}"/>
 
