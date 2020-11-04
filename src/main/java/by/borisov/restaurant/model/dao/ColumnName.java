@@ -1,9 +1,11 @@
 package by.borisov.restaurant.model.dao;
 
+/**
+ * Class for storing column names
+ */
+
 public class ColumnName {
-    //columns from table Users
     public static final String ID_USER = "iduser";
-    public static final String LOGIN = "login";
     public static final String EMAIL = "email";
     public static final String PASSWORD = "password";
     public static final String ROLE = "role";

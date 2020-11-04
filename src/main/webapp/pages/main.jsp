@@ -1,4 +1,4 @@
-<%--@elvariable id="user" type="java"--%>
+<%--@elvariable id="userName" type="java"--%>
 <%--
   Created by IntelliJ IDEA.
   User: MirniyPirojok
@@ -15,15 +15,13 @@
     <title>Welcome</title>
 </head>
 <body>
-<form name="mainForm" method="post" action="do">
-    <input type="hidden" name="command" value="logout"/>
+<form name="mainForm" method="post" action="do?command=logout">
 
     <h3><fmt:message key="message.welcome"/></h3>
     <hr/>
-    ${user}, <fmt:message key="message.hello"/><!doctype html>
+    ${userName}, <fmt:message key="message.hello"/><!doctype html>
     <hr/>
-    <input type="submit" name="logout" value=
-    <fmt:message key="button.logout"/>/>
+    <input type="submit" name="logout" value=<fmt:message key="button.logout"/>/>
 
 </form>
 </body>

@@ -5,11 +5,10 @@
   Time: 12:33
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
-<style>
+<%--<style>
     body {
         background-size: cover;
         background-color: gray;
@@ -21,26 +20,19 @@
 </style>
 
 <%@ include file="/pages/include/head.jsp" %>
-<%@ include file="/pages/include/menu.jsp" %>
+&lt;%&ndash;<%@ include file="/pages/include/menu.jsp" %>&ndash;%&gt;
 <body>
-<table align="right">
-    <tr>
-        <td>
-            <form class="form-horizontal" action="do?command=change_locale" method="post">
-                <button id="en" name="en" class=" btn-outline-primary">en</button>
-            </form>
-        </td>
-        <td>
-            <form class="form-horizontal" action="do?command=change_locale" method="post">
-                <button id="ru" name="ru" class=" btn-outline-primary">ru</button>
-            </form>
-        </td>
-    </tr>
-</table>
-
 
 <b><h2 align="center"><fmt:message key="message.welcome"/></h2></b>
 
 <%@ include file="/pages/include/footer.jsp" %>
 </body>
+</html>--%>
+<head>
+    <title>Index</title>
+</head>
+<body>
+<jsp:forward page="/pages/login.jsp"></jsp:forward>
+</body>
 </html>
+

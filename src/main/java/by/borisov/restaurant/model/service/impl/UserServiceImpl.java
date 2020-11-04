@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import static by.borisov.restaurant.model.dao.ColumnName.EMAIL;
-import static by.borisov.restaurant.model.dao.ColumnName.LOGIN;
 import static by.borisov.restaurant.model.dao.ColumnName.NAME;
 import static by.borisov.restaurant.model.dao.ColumnName.PASSWORD;
 import static by.borisov.restaurant.model.dao.ColumnName.PHONE;
@@ -43,16 +42,16 @@ public class UserServiceImpl implements UserService {
         return users;
     }
 
-    public User findUser(String login, String password) throws ServiceException {
+    public User findUser(String email, String password) throws ServiceException {
         User user;
         UserDaoImpl userDaoImpl = new UserDaoImpl();
         EntityTransaction action = new EntityTransaction();
         try {
             action.begin(userDaoImpl);
-            user = userDaoImpl.findByLoginAndPassword(login, password);
+            user = userDaoImpl.findByEmailAndPassword(email, password);
         } catch (DaoException e) {
-            logger.error("Error during searching user by login and password.", e);
-            throw new ServiceException("Error during searching user by login and password.", e);
+            logger.error("Error during searching user by email and password.", e);
+            throw new ServiceException("Error during searching user by email and password.", e);
         } finally {
             action.end();
         }
@@ -60,13 +59,12 @@ public class UserServiceImpl implements UserService {
     }
 
     public boolean createUser(Map<String, String> userParameters) throws ServiceException {
-        boolean isUserCreated = false;
+        boolean isUserCreated;
 
         User user = new User();
-        user.setRole(ROLE_USER);
-        user.setLogin(userParameters.get(LOGIN));
         user.setEmail(userParameters.get(EMAIL));
         user.setPassword(userParameters.get(PASSWORD));
+        user.setRole(ROLE_USER);
         user.setPhone(userParameters.get(PHONE));
         user.setName(userParameters.get(NAME));
         user.setSurname(userParameters.get(SURNAME));

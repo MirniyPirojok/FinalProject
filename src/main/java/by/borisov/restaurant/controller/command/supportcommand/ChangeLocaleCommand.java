@@ -8,7 +8,13 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import static by.borisov.restaurant.controller.command.FormParameterName.*;
+import static by.borisov.restaurant.controller.command.FormParameterName.FORM_PARAM_LOCALE;
+import static by.borisov.restaurant.controller.command.FormParameterName.GET;
+import static by.borisov.restaurant.controller.command.FormParameterName.LANGUAGE_EN;
+import static by.borisov.restaurant.controller.command.FormParameterName.LANGUAGE_RU;
+import static by.borisov.restaurant.controller.command.FormParameterName.LOCALE_EN;
+import static by.borisov.restaurant.controller.command.FormParameterName.LOCALE_RU;
+import static by.borisov.restaurant.controller.command.FormParameterName.TYPE_METHOD;
 
 /**
  * The class changes the locale.
@@ -30,6 +36,7 @@ public class ChangeLocaleCommand implements ActionCommand {
         }
         HttpSession session = request.getSession();
         session.setAttribute(FORM_PARAM_LOCALE, locale);
+
         return PagePath.INDEX_PAGE;
     }
 }

@@ -1,3 +1,4 @@
+<%--@elvariable id="mes_error" type="java"--%>
 <%--
   Created by IntelliJ IDEA.
   User: MirniyPirojok
@@ -5,54 +6,56 @@
   Time: 22:05
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<fmt:setLocale value="ru" scope="request"/>
-<fmt:setBundle basename="pagecontent.pagecontent"/>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title><fmt:message key="label.login"/></title>
-</head>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="/pages/include/head.jsp" %>
+
 <body>
-<form name="SignUpForm" method="post" action="do">
-    <input type="hidden" name="command" value="sign_up"/>
 
-    <fmt:message key="label.login"/>*
-    <label>
-        <input type="text" name="login" value="" required/>
-    </label>
+<form class="mx-auto my-5" style="width: 300px;" method="post" action="do?command=sign_up">
+    <div class="form-group">
+        <label for="emailInput"><fmt:message key="label.email"/>*</label>
+        <input type="email" name="email" class="form-control" id="emailInput" aria-describedby="emailHelp" required/>
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
 
-    <br/><br/><fmt:message key="label.email"/>*
-    <label>
-        <input type="email" name="email" value="" />
-    </label>
+    <div class="form-group">
+        <label for="passwordInput"><fmt:message key="label.password"/>*</label>
+        <input id="passwordInput" type="password" name="password" class="form-control" required/>
+    </div>
 
-    <br/><br/><fmt:message key="label.password"/>*
-    <label>
-        <input type="password" name="password" value="" />
-    </label>
+    <div class="form-group">
+        <label for="phoneInput"><fmt:message key="label.phone"/>*</label>
+        <input id="phoneInput" type="tel" name="phone" class="form-control" required/>
+    </div>
 
-    <br/><br/><fmt:message key="label.phone"/>*
-    <label>
-        <input type="tel" name="phone" value="" />
-    </label>
+    <div class="form-group">
+        <label for="nameInput"><fmt:message key="label.nameUser"/>*</label>
+        <input id="nameInput" type="text" name="name" class="form-control" required/>
+    </div>
 
-    <br/><br/><fmt:message key="label.name"/>
-    <label>
-        <input type="text" name="name" value=""/>
-    </label>
+    <div class="form-group">
+        <label for="surnameInput"><fmt:message key="label.surname"/>*</label>
+        <input id="surnameInput" type="text" name="surname" class="form-control" required/>
+    </div>
 
-    <br/><br/><fmt:message key="label.surname"/>
-    <label>
-        <input type="text" name="surname" value=""/>
-    </label>
+    <div class="form-group">
+        <label for="registerButton">
+            <button type="submit" id="registerButton" class="btn btn-primary">
+                <fmt:message key="button.signup"/>
+            </button>
+        </label>
+    </div>
 
-    <br/><br/><input type="submit" value=
-        <fmt:message key="button.signup"/>/>
+    <div class="form-group">
+        ${mes_error}
+    </div>
+
 </form>
 
+<%@ include file="/pages/include/footer.jsp" %>
 </body>
 </html>
