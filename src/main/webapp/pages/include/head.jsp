@@ -11,11 +11,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${locale}" scope="session"/>
-<fmt:setBundle basename="pagecontent.pagecontent" />
+<fmt:setBundle basename="pagecontent.pagecontent"/>
 
 <head>
     <title>Borisov's restaurant</title>
-    <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,8 +46,10 @@
                             <fmt:message key="navBar.orders"/>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="do?command=create_new_order"><fmt:message key="navBar.newOrder"/></a>
-                            <a class="dropdown-item" href="do?command=view_orders_list"><fmt:message key="navBar.ordersList"/></a>
+                            <a class="dropdown-item" href="do?command=create_new_order"><fmt:message
+                                    key="navBar.newOrder"/></a>
+                            <a class="dropdown-item" href="do?command=view_orders_list"><fmt:message
+                                    key="navBar.ordersList"/></a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -60,20 +61,24 @@
                 </ul>
             </div>
 
-            <table align="right">
+            <table>
                 <tr>
                     <td>
-                        <form class="form-horizontal" action="do?command=change_locale" method="post">
+                        <form class="form-horizontal" action="do" method="post">
+                            <input type="hidden" name="command" value="change_locale">
+
                             <button name="en" class="btn-outline-primary">en</button>
                         </form>
                     </td>
                     <td>
-                        <form class="form-horizontal" action="do?command=change_locale" method="post">
+                        <form class="form-horizontal" action="do" method="post">
+                            <input type="hidden" name="command" value="change_locale">
                             <button name="ru" class="btn-outline-primary">ru</button>
                         </form>
                     </td>
                 </tr>
             </table>
+
         </nav>
     </div>
 </head>

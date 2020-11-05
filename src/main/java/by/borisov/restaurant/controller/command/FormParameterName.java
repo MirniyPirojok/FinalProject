@@ -19,6 +19,7 @@ public class FormParameterName {
     public static final String GET = "GET";
     public static final String TYPE_METHOD = "typeMethod";
     public static final String REDIRECT_SECURE = "flag";
+    public static final String SAVED_PAGE = "savedPage";
 
     private FormParameterName() {
     }

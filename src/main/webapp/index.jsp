@@ -1,3 +1,4 @@
+<%--@elvariable id="locale" type="java"--%>
 <%--
   Created by IntelliJ IDEA.
   User: MirniyPirojok
@@ -7,32 +8,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html lang="en">
-<%--<style>
-    body {
-        background-size: cover;
-        background-color: gray;
-    }
+<html lang="${locale}">
 
-    b {
-        color: black;
-    }
-</style>
-
-<%@ include file="/pages/include/head.jsp" %>
-&lt;%&ndash;<%@ include file="/pages/include/menu.jsp" %>&ndash;%&gt;
-<body>
-
-<b><h2 align="center"><fmt:message key="message.welcome"/></h2></b>
-
-<%@ include file="/pages/include/footer.jsp" %>
-</body>
-</html>--%>
 <head>
     <title>Index</title>
 </head>
 <body>
-<jsp:forward page="/pages/login.jsp"></jsp:forward>
+<jsp:forward page="/pages/login.jsp"/>
 </body>
 </html>
 

@@ -1,3 +1,4 @@
+<%--@elvariable id="locale" type="java"--%>
 <%--@elvariable id="userName" type="java"--%>
 <%--
   Created by IntelliJ IDEA.
@@ -6,11 +7,12 @@
   Time: 12:42
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="ru" scope="request"/>
 <fmt:setBundle basename="pagecontent.pagecontent"/>
 <!DOCTYPE html>
+<html lang="${locale}">
 <head>
     <title>Welcome</title>
 </head>

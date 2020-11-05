@@ -1,3 +1,4 @@
+<%--@elvariable id="locale" type="java"--%>
 <%--@elvariable id="errormailOrLogin" type="java"--%>
 <%--
   Created by IntelliJ IDEA.
@@ -12,7 +13,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${locale}">
 <%@ include file="/pages/include/head.jsp" %>
 
 <body>

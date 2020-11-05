@@ -85,6 +85,8 @@ public class LoginCommand implements ActionCommand {
                 page = PagePath.LOGIN_PAGE;
             }
         }
+        logger.debug(String.format("Page after login command: %s", page));
+
         return page;
     }
 }

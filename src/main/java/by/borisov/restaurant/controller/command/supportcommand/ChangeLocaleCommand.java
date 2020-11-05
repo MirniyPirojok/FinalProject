@@ -1,7 +1,6 @@
 package by.borisov.restaurant.controller.command.supportcommand;
 
 import by.borisov.restaurant.controller.command.ActionCommand;
-import by.borisov.restaurant.controller.command.PagePath;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,6 +13,7 @@ import static by.borisov.restaurant.controller.command.FormParameterName.LANGUAG
 import static by.borisov.restaurant.controller.command.FormParameterName.LANGUAGE_RU;
 import static by.borisov.restaurant.controller.command.FormParameterName.LOCALE_EN;
 import static by.borisov.restaurant.controller.command.FormParameterName.LOCALE_RU;
+import static by.borisov.restaurant.controller.command.FormParameterName.SAVED_PAGE;
 import static by.borisov.restaurant.controller.command.FormParameterName.TYPE_METHOD;
 
 /**
@@ -36,7 +36,9 @@ public class ChangeLocaleCommand implements ActionCommand {
         }
         HttpSession session = request.getSession();
         session.setAttribute(FORM_PARAM_LOCALE, locale);
+        String page = (String) session.getAttribute(SAVED_PAGE);
+        logger.debug(String.format("Page to go: %s", page));
 
-        return PagePath.INDEX_PAGE;
+        return page;
     }
 }

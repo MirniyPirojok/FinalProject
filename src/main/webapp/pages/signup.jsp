@@ -1,3 +1,4 @@
+<%--@elvariable id="locale" type="java"--%>
 <%--@elvariable id="mes_error" type="java"--%>
 <%--
   Created by IntelliJ IDEA.
@@ -8,7 +9,7 @@
 --%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${locale}">
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/pages/include/head.jsp" %>
@@ -19,7 +20,7 @@
     <div class="form-group">
         <label for="emailInput"><fmt:message key="label.email"/>*</label>
         <input type="email" name="email" class="form-control" id="emailInput" aria-describedby="emailHelp" required/>
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <small id="emailHelp" class="form-text text-muted"><fmt:message key="label.emailSmall"/></small>
     </div>
 
     <div class="form-group">
@@ -50,7 +51,7 @@
         </label>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="color: red">
         ${mes_error}
     </div>
 
