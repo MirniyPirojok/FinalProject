@@ -1,9 +1,7 @@
-package by.borisov.restaurant.controller.command.usercommand;
+package by.borisov.restaurant.controller.command.impl;
 
 import by.borisov.restaurant.controller.command.ActionCommand;
-import by.borisov.restaurant.controller.command.FormParameterName;
-import by.borisov.restaurant.controller.command.PagePath;
-import by.borisov.restaurant.util.FormValidator;
+import by.borisov.restaurant.controller.command.ParameterName;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,7 +19,7 @@ public class LogoutCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page;
-        request.setAttribute(FormParameterName.TYPE_METHOD, FormParameterName.GET);
+        request.setAttribute(ParameterName.TYPE_METHOD, ParameterName.GET);
         request.getSession().invalidate();
         logger.debug("Session is invalidate. Return to index page");
         page = LOGIN_PAGE;

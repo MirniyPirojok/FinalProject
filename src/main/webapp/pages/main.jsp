@@ -13,12 +13,13 @@
 <fmt:setBundle basename="pagecontent.pagecontent"/>
 <!DOCTYPE html>
 <html lang="${locale}">
+<%@ include file="/pages/include/head.jsp" %>
+
 <head>
     <title>Welcome</title>
 </head>
 <body>
 <form name="mainForm" method="post" action="do?command=logout">
-
     <h3><fmt:message key="message.welcome"/></h3>
     <hr/>
     ${userName}, <fmt:message key="message.hello"/><!doctype html>
@@ -27,4 +28,5 @@
 
 </form>
 </body>
+<%@ include file="/pages/include/footer.jsp" %>
 </html>

@@ -9,15 +9,32 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<fmt:setLocale value="${locale}" scope="session"/>
+<fmt:setBundle basename="pagecontent.pagecontent"/>
 
 <!DOCTYPE html>
 <html lang="${locale}">
 <%@ include file="/pages/include/head.jsp" %>
-
+<table class="mx-auto">
+    <tr>
+        <td>
+            <form class="form-horizontal" action="do" method="post">
+                <input type="hidden" name="command" value="change_locale">
+                <button name="en" class="btn-outline-secondary">en</button>
+            </form>
+        </td>
+        <td>
+            <form class="form-horizontal" action="do" method="post">
+                <input type="hidden" name="command" value="change_locale">
+                <button name="ru" class="btn-outline-secondary">ru</button>
+            </form>
+        </td>
+    </tr>
+</table>
 <body>
-
 <form class="mx-auto my-5" style="width: 300px;" method="post" action="do?command=login">
     <div class="form-group">
         <label for="emailInput"><fmt:message key="label.email"/><br/></label>
@@ -44,7 +61,6 @@
     </div>
 
 </form>
-
-<%@ include file="/pages/include/footer.jsp" %>
 </body>
+<%@ include file="/pages/include/footer.jsp" %>
 </html>

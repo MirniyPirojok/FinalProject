@@ -12,8 +12,8 @@
 //import javax.servlet.http.HttpSession;
 //import java.io.IOException;
 //
-//import static by.borisov.restaurant.controller.command.FormParameterName.FORM_PARAM_LOCALE;
-//import static by.borisov.restaurant.controller.command.FormParameterName.LANGUAGE_RU;
+//import static by.borisov.restaurant.controller.command.ParameterName.FORM_PARAM_LOCALE;
+//import static by.borisov.restaurant.controller.command.ParameterName.LANGUAGE_RU;
 //
 //
 ///**

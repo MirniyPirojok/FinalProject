@@ -1,7 +1,7 @@
-package by.borisov.restaurant.controller.command.usercommand;
+package by.borisov.restaurant.controller.command.impl;
 
 import by.borisov.restaurant.controller.command.ActionCommand;
-import by.borisov.restaurant.controller.command.FormParameterName;
+import by.borisov.restaurant.controller.command.ParameterName;
 import by.borisov.restaurant.controller.command.PagePath;
 import by.borisov.restaurant.exception.ServiceException;
 import by.borisov.restaurant.model.service.impl.UserServiceImpl;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
-import static by.borisov.restaurant.controller.command.FormParameterName.FORM_PARAM_MESSAGE_ERROR;
+import static by.borisov.restaurant.controller.command.ParameterName.FORM_PARAM_MESSAGE_ERROR;
 import static by.borisov.restaurant.controller.command.PagePath.MAIN_PAGE;
 import static by.borisov.restaurant.model.dao.ColumnName.EMAIL;
 import static by.borisov.restaurant.model.dao.ColumnName.NAME;
@@ -37,7 +37,7 @@ public class SignUpCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page;
-        request.setAttribute(FormParameterName.TYPE_METHOD, FormParameterName.GET);
+        request.setAttribute(ParameterName.TYPE_METHOD, ParameterName.GET);
         if (!FormValidator.isPost(request)) {
             page = PagePath.SIGN_UP_PAGE;
         } else {
@@ -52,7 +52,7 @@ public class SignUpCommand implements ActionCommand {
             try {
                 userServiceImpl.createUser(userParameters);
                 HttpSession session = request.getSession();
-                session.setAttribute(FormParameterName.FORM_PARAM_USER_NAME, userParameters.get(NAME));
+                session.setAttribute(ParameterName.FORM_PARAM_USER_NAME, userParameters.get(NAME));
                 page = MAIN_PAGE;
                 logger.debug(String.format("User %s was registered. Go to main page.", EMAIL));
             } catch (ServiceException e) {

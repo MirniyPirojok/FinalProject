@@ -6,6 +6,7 @@ import by.borisov.restaurant.exception.ServiceException;
 import by.borisov.restaurant.model.dao.EntityTransaction;
 import by.borisov.restaurant.model.dao.impl.UserDaoImpl;
 import by.borisov.restaurant.model.service.UserService;
+import by.borisov.restaurant.util.EncryptionPassword;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -46,6 +47,8 @@ public class UserServiceImpl implements UserService {
         User user;
         UserDaoImpl userDaoImpl = new UserDaoImpl();
         EntityTransaction action = new EntityTransaction();
+        password = EncryptionPassword.encrypt(password);
+
         try {
             action.begin(userDaoImpl);
             user = userDaoImpl.findByEmailAndPassword(email, password);
@@ -61,9 +64,12 @@ public class UserServiceImpl implements UserService {
     public boolean createUser(Map<String, String> userParameters) throws ServiceException {
         boolean isUserCreated;
 
+        String password = userParameters.get(PASSWORD);
+        password = EncryptionPassword.encrypt(password);
+
         User user = new User();
         user.setEmail(userParameters.get(EMAIL));
-        user.setPassword(userParameters.get(PASSWORD));
+        user.setPassword(password);
         user.setRole(ROLE_USER);
         user.setPhone(userParameters.get(PHONE));
         user.setName(userParameters.get(NAME));

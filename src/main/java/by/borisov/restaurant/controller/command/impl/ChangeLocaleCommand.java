@@ -1,20 +1,20 @@
-package by.borisov.restaurant.controller.command.supportcommand;
+package by.borisov.restaurant.controller.command.impl;
 
 import by.borisov.restaurant.controller.command.ActionCommand;
+import by.borisov.restaurant.controller.command.PagePath;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import static by.borisov.restaurant.controller.command.FormParameterName.FORM_PARAM_LOCALE;
-import static by.borisov.restaurant.controller.command.FormParameterName.GET;
-import static by.borisov.restaurant.controller.command.FormParameterName.LANGUAGE_EN;
-import static by.borisov.restaurant.controller.command.FormParameterName.LANGUAGE_RU;
-import static by.borisov.restaurant.controller.command.FormParameterName.LOCALE_EN;
-import static by.borisov.restaurant.controller.command.FormParameterName.LOCALE_RU;
-import static by.borisov.restaurant.controller.command.FormParameterName.SAVED_PAGE;
-import static by.borisov.restaurant.controller.command.FormParameterName.TYPE_METHOD;
+import static by.borisov.restaurant.controller.command.ParameterName.FORM_PARAM_LOCALE;
+import static by.borisov.restaurant.controller.command.ParameterName.GET;
+import static by.borisov.restaurant.controller.command.ParameterName.LANGUAGE_EN;
+import static by.borisov.restaurant.controller.command.ParameterName.LANGUAGE_RU;
+import static by.borisov.restaurant.controller.command.ParameterName.LOCALE_EN;
+import static by.borisov.restaurant.controller.command.ParameterName.LOCALE_RU;
+import static by.borisov.restaurant.controller.command.ParameterName.TYPE_METHOD;
 
 /**
  * The class changes the locale.
@@ -36,9 +36,7 @@ public class ChangeLocaleCommand implements ActionCommand {
         }
         HttpSession session = request.getSession();
         session.setAttribute(FORM_PARAM_LOCALE, locale);
-        String page = (String) session.getAttribute(SAVED_PAGE);
-        logger.debug(String.format("Page to go: %s", page));
 
-        return page;
+        return PagePath.INDEX_PAGE;
     }
 }

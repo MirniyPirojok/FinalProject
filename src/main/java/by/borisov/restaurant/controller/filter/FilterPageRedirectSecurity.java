@@ -1,6 +1,6 @@
 package by.borisov.restaurant.controller.filter;
 
-import by.borisov.restaurant.controller.command.FormParameterName;
+import by.borisov.restaurant.controller.command.ParameterName;
 import by.borisov.restaurant.controller.command.PagePath;
 
 import javax.servlet.Filter;
@@ -40,10 +40,10 @@ public class FilterPageRedirectSecurity implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
         HttpSession session = httpRequest.getSession();
-        if (session.getAttribute(FormParameterName.REDIRECT_SECURE) == null) {
+        if (session.getAttribute(ParameterName.REDIRECT_SECURE) == null) {
             httpResponse.sendRedirect(httpRequest.getContextPath() + PagePath.INDEX_PAGE);
         } else {
-            session.setAttribute(FormParameterName.REDIRECT_SECURE, null);
+            session.setAttribute(ParameterName.REDIRECT_SECURE, null);
             filterChain.doFilter(servletRequest, servletResponse);
         }
     }

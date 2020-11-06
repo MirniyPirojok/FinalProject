@@ -2,7 +2,7 @@ package by.borisov.restaurant.controller;
 
 import by.borisov.restaurant.controller.command.ActionCommand;
 import by.borisov.restaurant.controller.command.CommandProvider;
-import by.borisov.restaurant.controller.command.FormParameterName;
+import by.borisov.restaurant.controller.command.ParameterName;
 import by.borisov.restaurant.controller.command.PagePath;
 import by.borisov.restaurant.model.pool.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
@@ -17,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static by.borisov.restaurant.controller.command.FormParameterName.GET;
-import static by.borisov.restaurant.controller.command.FormParameterName.POST;
-import static by.borisov.restaurant.controller.command.FormParameterName.REDIRECT_SECURE;
-import static by.borisov.restaurant.controller.command.FormParameterName.TYPE_METHOD;
+import static by.borisov.restaurant.controller.command.ParameterName.GET;
+import static by.borisov.restaurant.controller.command.ParameterName.POST;
+import static by.borisov.restaurant.controller.command.ParameterName.REDIRECT_SECURE;
+import static by.borisov.restaurant.controller.command.ParameterName.TYPE_METHOD;
 
 @WebServlet(urlPatterns = {"/do"})
 public class Controller extends HttpServlet {
@@ -37,7 +37,7 @@ public class Controller extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String reqParameter = request.getParameter(FormParameterName.FORM_PARAM_COMMAND);
+        String reqParameter = request.getParameter(ParameterName.FORM_PARAM_COMMAND);
         String nameCommand = reqParameter.toUpperCase();
         ActionCommand command = CommandProvider.defineCommand(nameCommand);
 

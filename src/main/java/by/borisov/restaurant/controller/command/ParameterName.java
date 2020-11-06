@@ -4,7 +4,7 @@ package by.borisov.restaurant.controller.command;
  * Class contains constants
  */
 
-public class FormParameterName {
+public class ParameterName {
 
     public static final String FORM_PARAM_USER_NAME = "userName";
     public static final String FORM_PARAM_ERROR_MAIL_OR_LOGIN = "errormailOrLogin";
@@ -21,6 +21,6 @@ public class FormParameterName {
     public static final String REDIRECT_SECURE = "flag";
     public static final String SAVED_PAGE = "savedPage";
 
-    private FormParameterName() {
+    private ParameterName() {
     }
 }

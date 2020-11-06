@@ -32,11 +32,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="do?command=home">
-                            <fmt:message key="navBar.home"/>
-                            <span class="sr-only">(current)</span></a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="do?command=view_dishes"><fmt:message key="navBar.dishes"/> </a>
                     </li>
@@ -46,12 +42,13 @@
                             <fmt:message key="navBar.orders"/>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="do?command=create_new_order"><fmt:message
-                                    key="navBar.newOrder"/></a>
-                            <a class="dropdown-item" href="do?command=view_orders_list"><fmt:message
+                            <a class="dropdown-item" href="do?command=add_order"><fmt:message
+                                    key="navBar.addOrder"/></a>
+                            <a class="dropdown-item" href="do?command=view_orders"><fmt:message
                                     key="navBar.ordersList"/></a>
                         </div>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="do?command=login"><fmt:message key="navBar.login"/> </a>
                     </li>
@@ -60,25 +57,6 @@
                     </li>
                 </ul>
             </div>
-
-            <table>
-                <tr>
-                    <td>
-                        <form class="form-horizontal" action="do" method="post">
-                            <input type="hidden" name="command" value="change_locale">
-
-                            <button name="en" class="btn-outline-primary">en</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form class="form-horizontal" action="do" method="post">
-                            <input type="hidden" name="command" value="change_locale">
-                            <button name="ru" class="btn-outline-primary">ru</button>
-                        </form>
-                    </td>
-                </tr>
-            </table>
-
         </nav>
     </div>
 </head>
