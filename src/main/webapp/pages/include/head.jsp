@@ -33,17 +33,27 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="do?command=view_dishes"><fmt:message key="navBar.dishes"/> </a>
-                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button"
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink1" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <fmt:message key="navBar.dishes"/>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                            <a class="dropdown-item" href="do?command=new_dish"><fmt:message
+                                    key="navBar.newDish"/></a>
+                            <a class="dropdown-item" href="do?command=view_dishes"><fmt:message
+                                    key="navBar.dishesList"/></a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink2" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <fmt:message key="navBar.orders"/>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="do?command=add_order"><fmt:message
-                                    key="navBar.addOrder"/></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                            <a class="dropdown-item" href="do?command=new_order"><fmt:message
+                                    key="navBar.newOrder"/></a>
                             <a class="dropdown-item" href="do?command=view_orders"><fmt:message
                                     key="navBar.ordersList"/></a>
                         </div>

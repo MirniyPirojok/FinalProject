@@ -1,16 +1,8 @@
-2020-11-06 16:16:31.408 [http-nio-8089-exec-82] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/signup.jsp
-2020-11-06 16:16:31.419 [http-nio-8089-exec-82] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/signup.jsp
-2020-11-06 16:16:32.369 [http-nio-8089-exec-83] [DEBUG] restaurant.controller.command.impl.LoginCommand - Page after login command: /pages/login.jsp
-2020-11-06 16:16:32.369 [http-nio-8089-exec-83] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/login.jsp
-2020-11-06 16:16:32.369 [http-nio-8089-exec-83] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/login.jsp
-2020-11-06 16:16:34.926 [http-nio-8089-exec-84] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/addorder.jsp
-2020-11-06 16:16:34.927 [http-nio-8089-exec-84] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/addorder.jsp
-2020-11-06 16:16:36.089 [http-nio-8089-exec-85] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/orders.jsp
-2020-11-06 16:16:36.089 [http-nio-8089-exec-85] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/orders.jsp
-2020-11-06 16:16:36.721 [http-nio-8089-exec-87] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/dishes.jsp
-2020-11-06 16:16:36.721 [http-nio-8089-exec-87] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/dishes.jsp
-2020-11-06 16:16:37.944 [http-nio-8089-exec-88] [DEBUG] restaurant.controller.command.impl.LoginCommand - Page after login command: /pages/login.jsp
-2020-11-06 16:16:37.945 [http-nio-8089-exec-88] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/login.jsp
-2020-11-06 16:16:37.945 [http-nio-8089-exec-88] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/login.jsp
-2020-11-06 16:16:46.503 [http-nio-8089-exec-89] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/dishes.jsp
-2020-11-06 16:16:46.504 [http-nio-8089-exec-89] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/dishes.jsp
+2020-11-06 16:48:00.733 [http-nio-8089-exec-138] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/newdish.jsp
+2020-11-06 16:48:00.739 [http-nio-8089-exec-138] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/newdish.jsp
+2020-11-06 16:48:01.951 [http-nio-8089-exec-131] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/dishes.jsp
+2020-11-06 16:48:01.951 [http-nio-8089-exec-131] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/dishes.jsp
+2020-11-06 16:48:03.709 [http-nio-8089-exec-128] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/neworder.jsp
+2020-11-06 16:48:03.710 [http-nio-8089-exec-128] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/neworder.jsp
+2020-11-06 16:48:04.670 [http-nio-8089-exec-129] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/orders.jsp
+2020-11-06 16:48:04.671 [http-nio-8089-exec-129] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/orders.jsp
