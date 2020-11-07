@@ -13,4 +13,7 @@ public class ColumnName {
     public static final String NAME = "name";
     public static final String SURNAME = "surname";
 
+    public static final String COST= "cost";
+    public static final String ID_DISH = "id_dish";
+
 }

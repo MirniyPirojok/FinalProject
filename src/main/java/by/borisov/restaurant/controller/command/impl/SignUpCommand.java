@@ -4,6 +4,7 @@ import by.borisov.restaurant.controller.command.ActionCommand;
 import by.borisov.restaurant.controller.command.ParameterName;
 import by.borisov.restaurant.controller.command.PagePath;
 import by.borisov.restaurant.exception.ServiceException;
+import by.borisov.restaurant.model.service.UserService;
 import by.borisov.restaurant.model.service.impl.UserServiceImpl;
 import by.borisov.restaurant.util.FormValidator;
 import org.apache.logging.log4j.LogManager;
@@ -41,7 +42,6 @@ public class SignUpCommand implements ActionCommand {
         if (!FormValidator.isPost(request)) {
             page = PagePath.SIGN_UP_PAGE;
         } else {
-            UserServiceImpl userServiceImpl = new UserServiceImpl();
             Map<String, String> userParameters = new HashMap<>();
             userParameters.put(EMAIL, request.getParameter(EMAIL));
             userParameters.put(PASSWORD, request.getParameter(PASSWORD));
@@ -49,8 +49,9 @@ public class SignUpCommand implements ActionCommand {
             userParameters.put(NAME, request.getParameter(NAME));
             userParameters.put(SURNAME, request.getParameter(SURNAME));
 
+            UserService userService = new UserServiceImpl();
             try {
-                userServiceImpl.createUser(userParameters);
+                userService.createUser(userParameters);
                 HttpSession session = request.getSession();
                 session.setAttribute(ParameterName.FORM_PARAM_USER_NAME, userParameters.get(NAME));
                 page = MAIN_PAGE;

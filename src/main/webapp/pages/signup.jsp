@@ -1,12 +1,3 @@
-<%--@elvariable id="locale" type="java"--%>
-<%--@elvariable id="mes_error" type="java"--%>
-<%--
-  Created by IntelliJ IDEA.
-  User: MirniyPirojok
-  Date: 01.11.2020
-  Time: 22:05
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -24,7 +15,6 @@
     <div class="form-group">
         <label for="emailInput"><fmt:message key="label.email"/>*</label>
         <input type="email" name="email" class="form-control" id="emailInput" aria-describedby="emailHelp" required/>
-        <small id="emailHelp" class="form-text text-muted"><fmt:message key="label.emailSmall"/></small>
     </div>
 
     <div class="form-group">
@@ -56,7 +46,7 @@
     </div>
 
     <div class="form-group" style="color: red">
-        ${mes_error}
+        ${msg_error}
     </div>
 
 </form>

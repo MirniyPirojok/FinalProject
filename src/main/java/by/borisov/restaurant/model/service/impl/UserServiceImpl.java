@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
     static Logger logger = LogManager.getLogger();
     private static final String ROLE_USER = "user";
 
+    @Override
     public List<User> findAllUsers() throws ServiceException {
         List<User> users;
         UserDaoImpl userDaoImpl = new UserDaoImpl();
@@ -35,14 +36,14 @@ public class UserServiceImpl implements UserService {
             action.begin(userDaoImpl);
             users = userDaoImpl.findAll();
         } catch (DaoException e) {
-            logger.error("Error during searching all users.", e);
-            throw new ServiceException("Error during searching all users.", e);
+            throw new ServiceException(e);
         } finally {
             action.end();
         }
         return users;
     }
 
+    @Override
     public User findUser(String email, String password) throws ServiceException {
         User user;
         UserDaoImpl userDaoImpl = new UserDaoImpl();
@@ -61,6 +62,7 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
     public boolean createUser(Map<String, String> userParameters) throws ServiceException {
         boolean isUserCreated;
 
@@ -75,13 +77,13 @@ public class UserServiceImpl implements UserService {
         user.setName(userParameters.get(NAME));
         user.setSurname(userParameters.get(SURNAME));
 
-        UserDaoImpl userDaoImpl = new UserDaoImpl();
+        UserDaoImpl userDao = new UserDaoImpl();
         EntityTransaction action = new EntityTransaction();
 
         try {
-            action.begin(userDaoImpl);
-            isUserCreated = userDaoImpl.insert(user);
-            logger.info("User account was created");
+            action.begin(userDao);
+            isUserCreated = userDao.insert(user);
+            logger.debug("User account was created");
         } catch (DaoException e) {
             logger.error("Error during creating user", e);
             throw new ServiceException(e);

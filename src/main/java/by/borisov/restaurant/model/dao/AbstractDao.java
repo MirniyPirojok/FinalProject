@@ -18,8 +18,10 @@ import java.util.List;
  * @param <T> the type of entities associated with database tables.
  */
 public abstract class AbstractDao<T extends Entity> {
-    protected Connection connection;
     static Logger logger = LogManager.getLogger();
+    protected Connection connection;
+
+    public abstract boolean insert(T t) throws DaoException;
 
     public abstract List<T> findAll() throws DaoException;
 
@@ -28,8 +30,6 @@ public abstract class AbstractDao<T extends Entity> {
     public abstract boolean delete(T t) throws DaoException;
 
     public abstract boolean delete(long id) throws DaoException;
-
-    public abstract boolean insert(T t) throws DaoException;
 
     public abstract T update(T t) throws DaoException;
 

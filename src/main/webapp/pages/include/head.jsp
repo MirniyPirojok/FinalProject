@@ -1,11 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: MirniyPirojok
-  Date: 02.11.2020
-  Time: 14:56
-  To change this template use File | Settings | File Templates.
---%>
-<%--@elvariable id="locale" type="java"--%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -32,39 +24,62 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
+                    <%--                    <li class="nav-item dropdown">--%>
+                    <%--                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink1" role="button"--%>
+                    <%--                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+                    <%--                            <fmt:message key="navBar.dishes"/>--%>
+                    <%--                        </a>--%>
+                    <%--                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">--%>
+                    <%--                            <a class="dropdown-item" href="do?command=new_dish"><fmt:message--%>
+                    <%--                                    key="navBar.newDish"/></a>--%>
+                    <%--                            <a class="dropdown-item" href="do?command=view_dishes"><fmt:message--%>
+                    <%--                                    key="navBar.menu"/></a>--%>
+                    <%--                        </div>--%>
+                    <%--                    </li>--%>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink1" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <fmt:message key="navBar.dishes"/>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
-                            <a class="dropdown-item" href="do?command=new_dish"><fmt:message
-                                    key="navBar.newDish"/></a>
-                            <a class="dropdown-item" href="do?command=view_dishes"><fmt:message
-                                    key="navBar.dishesList"/></a>
-                        </div>
+                    <%--                    <li class="nav-item dropdown">--%>
+                    <%--                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink2" role="button"--%>
+                    <%--                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+                    <%--                            <fmt:message key="navBar.orders"/>--%>
+                    <%--                        </a>--%>
+                    <%--                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">--%>
+                    <%--                            <a class="dropdown-item" href="do?command=new_order"><fmt:message--%>
+                    <%--                                    key="navBar.newOrder"/></a>--%>
+                    <%--                            <a class="dropdown-item" href="do?command=view_orders"><fmt:message--%>
+                    <%--                                    key="navBar.ordersList"/></a>--%>
+                    <%--                        </div>--%>
+                    <%--                    </li>--%>
+
+
+                    <%--                        TODO available only for user--%>
+                    <li class="nav-item">
+                        <a class="nav-link" href="do?command=new_order"><fmt:message
+                                key="navBar.newOrder"/></a>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink2" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <fmt:message key="navBar.orders"/>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
-                            <a class="dropdown-item" href="do?command=new_order"><fmt:message
-                                    key="navBar.newOrder"/></a>
-                            <a class="dropdown-item" href="do?command=view_orders"><fmt:message
-                                    key="navBar.ordersList"/></a>
-                        </div>
+                    <%--                        TODO available only for administrator--%>
+                    <li class="nav-item">
+                        <a class="nav-link" href="do?command=view_orders"><fmt:message
+                                key="navBar.ordersList"/></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="do?command=new_dish"><fmt:message
+                                key="navBar.newDish"/></a>
                     </li>
 
+
+                    <%--                        TODO available for everyone--%>
+                    <li class="nav-item">
+                        <a class="nav-link" href="do?command=view_dishes"><fmt:message
+                                key="navBar.menu"/></a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="do?command=login"><fmt:message key="navBar.login"/> </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="do?command=sign_up"><fmt:message key="navBar.signup"/> </a>
                     </li>
+
                 </ul>
             </div>
         </nav>

@@ -1,8 +1,36 @@
-2020-11-06 16:48:00.733 [http-nio-8089-exec-138] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/newdish.jsp
-2020-11-06 16:48:00.739 [http-nio-8089-exec-138] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/newdish.jsp
-2020-11-06 16:48:01.951 [http-nio-8089-exec-131] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/dishes.jsp
-2020-11-06 16:48:01.951 [http-nio-8089-exec-131] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/dishes.jsp
-2020-11-06 16:48:03.709 [http-nio-8089-exec-128] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/neworder.jsp
-2020-11-06 16:48:03.710 [http-nio-8089-exec-128] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/neworder.jsp
-2020-11-06 16:48:04.670 [http-nio-8089-exec-129] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/orders.jsp
-2020-11-06 16:48:04.671 [http-nio-8089-exec-129] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/orders.jsp
+2020-11-07 16:34:11.456 [http-nio-8089-exec-160] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /do?command=new_order
+2020-11-07 16:34:11.478 [http-nio-8089-exec-160] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /do?command=new_order
+2020-11-07 16:34:11.478 [http-nio-8089-exec-160] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/neworder.jsp
+2020-11-07 16:34:11.478 [http-nio-8089-exec-160] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/neworder.jsp
+2020-11-07 16:34:25.601 [http-nio-8089-exec-159] [INFO ] borisov.restaurant.model.dao.EntityTransaction - by.borisov.restaurant.model.dao.impl.DishDaoImpl@6604268c has a connection: by.borisov.restaurant.model.pool.ProxyConnection@68c3c43c
+2020-11-07 16:34:25.604 [http-nio-8089-exec-159] [INFO ] borisov.restaurant.model.pool.ProxyConnection - Connection is returned the the pool.
+2020-11-07 16:34:25.604 [http-nio-8089-exec-159] [DEBUG] restaurant.controller.command.impl.NewOrderCommand - All dishes are found.
+2020-11-07 16:34:25.604 [http-nio-8089-exec-159] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/neworder.jsp
+2020-11-07 16:34:25.605 [http-nio-8089-exec-159] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/neworder.jsp
+2020-11-07 16:34:27.905 [http-nio-8089-exec-163] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/orders.jsp
+2020-11-07 16:34:27.905 [http-nio-8089-exec-163] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/orders.jsp
+2020-11-07 16:34:29.599 [http-nio-8089-exec-154] [INFO ] borisov.restaurant.model.dao.EntityTransaction - by.borisov.restaurant.model.dao.impl.DishDaoImpl@7b058752 has a connection: by.borisov.restaurant.model.pool.ProxyConnection@49df2dbe
+2020-11-07 16:34:29.602 [http-nio-8089-exec-154] [INFO ] borisov.restaurant.model.pool.ProxyConnection - Connection is returned the the pool.
+2020-11-07 16:34:29.602 [http-nio-8089-exec-154] [DEBUG] restaurant.controller.command.impl.NewOrderCommand - All dishes are found.
+2020-11-07 16:34:29.602 [http-nio-8089-exec-154] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/neworder.jsp
+2020-11-07 16:34:29.602 [http-nio-8089-exec-154] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/neworder.jsp
+2020-11-07 16:34:37.363 [http-nio-8089-exec-165] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /do?command=new_order
+2020-11-07 16:34:37.363 [http-nio-8089-exec-165] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /do?command=new_order
+2020-11-07 16:34:37.364 [http-nio-8089-exec-165] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/neworder.jsp
+2020-11-07 16:34:37.364 [http-nio-8089-exec-165] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/neworder.jsp
+2020-11-07 16:34:38.495 [http-nio-8089-exec-166] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/orders.jsp
+2020-11-07 16:34:38.495 [http-nio-8089-exec-166] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/orders.jsp
+2020-11-07 16:34:39.000 [http-nio-8089-exec-158] [INFO ] borisov.restaurant.model.dao.EntityTransaction - by.borisov.restaurant.model.dao.impl.DishDaoImpl@7de9fe0c has a connection: by.borisov.restaurant.model.pool.ProxyConnection@57303680
+2020-11-07 16:34:39.001 [http-nio-8089-exec-158] [INFO ] borisov.restaurant.model.pool.ProxyConnection - Connection is returned the the pool.
+2020-11-07 16:34:39.002 [http-nio-8089-exec-158] [DEBUG] restaurant.controller.command.impl.NewOrderCommand - All dishes are found.
+2020-11-07 16:34:39.002 [http-nio-8089-exec-158] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/neworder.jsp
+2020-11-07 16:34:39.002 [http-nio-8089-exec-158] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/neworder.jsp
+2020-11-07 16:34:55.154 [http-nio-8089-exec-167] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /do?command=new_order
+2020-11-07 16:34:55.154 [http-nio-8089-exec-167] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /do?command=new_order
+2020-11-07 16:34:55.155 [http-nio-8089-exec-167] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/neworder.jsp
+2020-11-07 16:34:55.156 [http-nio-8089-exec-167] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/neworder.jsp
+2020-11-07 16:34:56.150 [http-nio-8089-exec-168] [INFO ] borisov.restaurant.model.dao.EntityTransaction - by.borisov.restaurant.model.dao.impl.DishDaoImpl@1f68bc8 has a connection: by.borisov.restaurant.model.pool.ProxyConnection@f317586
+2020-11-07 16:34:56.152 [http-nio-8089-exec-168] [INFO ] borisov.restaurant.model.pool.ProxyConnection - Connection is returned the the pool.
+2020-11-07 16:34:56.153 [http-nio-8089-exec-168] [DEBUG] restaurant.controller.command.impl.NewOrderCommand - All dishes are found.
+2020-11-07 16:34:56.153 [http-nio-8089-exec-168] [DEBUG] by.borisov.restaurant.controller.Controller - Page in controller after command: /pages/neworder.jsp
+2020-11-07 16:34:56.153 [http-nio-8089-exec-168] [DEBUG] by.borisov.restaurant.controller.Controller - GET method in controller. Page to go: /pages/neworder.jsp

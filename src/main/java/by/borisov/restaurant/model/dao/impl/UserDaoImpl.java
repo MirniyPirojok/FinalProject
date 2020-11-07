@@ -15,17 +15,43 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for making query about user to DB
+ */
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     static Logger logger = LogManager.getLogger();
 
+    private static final String INSERT_USER =
+            "INSERT INTO users (email, password, role, phone, name, surname) VALUES (?,?,?,?,?,?)";
     public static final String SELECT_ALL_USERS =
             "SELECT iduser, email, password, role, phone, name, surname FROM users";
     private static final String SELECT_USER_BY_ID =
             "SELECT iduser, email, password, role, phone, name, surname FROM users WHERE iduser=?";
     private static final String SELECT_USER_BY_EMAIL_AND_PASSWORD =
             "SELECT iduser, email, password, role, phone, name, surname FROM users WHERE email=? and password=?";
-    private static final String INSERT_USER =
-            "INSERT INTO users (email, password, role, phone, name, surname) VALUES (?,?,?,?,?,?)";
+
+
+    @Override
+    public boolean insert(User user) throws DaoException {
+        boolean isInserted;
+        PreparedStatement statement = null;
+
+        try {
+            statement = connection.prepareStatement(INSERT_USER);
+            statement.setString(1, user.getEmail());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, user.getRole());
+            statement.setString(4, user.getPhone());
+            statement.setString(5, user.getName());
+            statement.setString(6, user.getSurname());
+            isInserted = (statement.executeUpdate() == 6);
+        } catch (SQLException e) {
+            throw new DaoException("Exception when inserting a user.", e);
+        } finally {
+            close(statement);
+        }
+        return isInserted;
+    }
 
     @Override
     public List<User> findAll() throws DaoException {
@@ -39,14 +65,12 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
                 User user = setUserParams(resultSet);
                 users.add(user);
             }
+            logger.info("The search for all users is completed.");
         } catch (SQLException e) {
-            logger.error("Exception when searching for all user.", e);
-            throw new DaoException("Exception when searching for all user.", e);
+            throw new DaoException(e);
         } finally {
             close(statement);
         }
-
-        logger.info("The search for all users is completed.");
         return users;
     }
 
@@ -63,7 +87,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
                 user = setUserParams(resultSet);
             }
         } catch (SQLException e) {
-            logger.error(String.format("Exception when searching for a user by id %d.", id), e);
             throw new DaoException(String.format("Exception when searching for a user by id %d.", id), e);
         } finally {
             close(statement);
@@ -88,7 +111,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
                 logger.info("User with such email and password wasn't found.");
             }
         } catch (SQLException e) {
-            logger.error("Exception when searching for a user by email and password", e);
             throw new DaoException("Exception when searching for a user by email and password", e);
         } finally {
             close(statement);
@@ -101,7 +123,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         User user = new User();
         user.setId(resultSet.getLong(ColumnName.ID_USER));
         user.setEmail(resultSet.getString(ColumnName.EMAIL));
-//        user.setPassword(resultSet.getString(ColumnName.PASSWORD));
         user.setRole(resultSet.getString(ColumnName.ROLE));
         user.setPhone(resultSet.getString(ColumnName.PHONE));
         user.setName(resultSet.getString(ColumnName.NAME));
@@ -119,28 +140,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         return false;
     }
 
-    @Override
-    public boolean insert(User user) throws DaoException {
-        boolean flag;
-        PreparedStatement statement = null;
-
-        try {
-            statement = connection.prepareStatement(INSERT_USER);
-            statement.setString(1, user.getEmail());
-            statement.setString(2, user.getPassword());
-            statement.setString(3, user.getRole());
-            statement.setString(4, user.getPhone());
-            statement.setString(5, user.getName());
-            statement.setString(6, user.getSurname());
-            flag = (statement.executeUpdate() == 6);
-        } catch (SQLException e) {
-            logger.info("Exception when inserting a user", e);
-            throw new DaoException("Exception when inserting a user.", e);
-        } finally {
-            close(statement);
-        }
-        return flag;
-    }
 
     @Override
     public User update(User user) throws DaoException {
