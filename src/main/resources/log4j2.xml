@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="warn">
     <Properties>
-        <Property name="LOG_DIR">c:\JAVA\Examples\WebTask2\logs</Property>
+        <Property name="LOG_DIR">../logs/webtask2</Property>
         <Property name="ARCHIVE_LOG_DIR">archive</Property>
         <Property name="pattern_file">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%-5level] %logger{5} - %msg%n</Property>
         <Property name="pattern_console">%r [%-5level] [%logger{1}] %msg%n</Property>
@@ -14,7 +14,7 @@
 
             <Policies>
                 <TimeBasedTriggeringPolicy/>
-                <SizeBasedTriggeringPolicy size="1000 kB"/>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
             </Policies>
             <DefaultRolloverStrategy max="10"/>
         </RollingFile>

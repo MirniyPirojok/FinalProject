@@ -24,6 +24,8 @@ import static by.borisov.restaurant.controller.command.ParameterName.FORM_PARAM_
 
 public class LoginCommand implements ActionCommand {
     static Logger logger = LogManager.getLogger();
+    UserServiceImpl userServiceImpl = new UserServiceImpl();
+
 
     /**
      * @param request from browser
@@ -37,7 +39,6 @@ public class LoginCommand implements ActionCommand {
             page = PagePath.LOGIN_PAGE;
         } else {
             try {
-                UserServiceImpl userServiceImpl = new UserServiceImpl();
                 String email = request.getParameter(ColumnName.EMAIL);
                 String password = request.getParameter(ColumnName.PASSWORD);
                 User user = userServiceImpl.findUser(email, password);
